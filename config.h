@@ -20,6 +20,13 @@ static const float fullscreen_bg[]         = {0.0f, 0.0f, 0.0f, 1.0f}; /* You ca
 /* logging */
 static int log_level = WLR_ERROR;
 
+/* Autostart */
+static const char *const autostart[] = {
+		// "export", "XKB_DEFAULT_LAYOUT=es",
+        NULL /* terminate */
+};
+
+
 static const Rule rules[] = {
 	/* app_id             title       tags mask     isfloating   monitor */
 	{ "Gimp_EXAMPLE",     NULL,       0,            1,           -1 }, /* Start on currently visible tags floating, not tiled */
@@ -49,12 +56,13 @@ static const MonitorRule monrules[] = {
 
 /* keyboard */
 static const struct xkb_rule_names xkb_rules = {
-	/* can specify fields: rules, model, layout, variant, options */
-	/* example:
-	.options = "ctrl:nocaps",
-	*/
-	.options = NULL,
+    .rules = NULL,
+    .model = NULL,
+    .layout = "es",      // Replace with your layout code (e.g., us, br, es)
+    .variant = NULL,
+    .options = NULL,
 };
+
 
 static const int repeat_rate = 25;
 static const int repeat_delay = 600;
