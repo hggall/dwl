@@ -4,3 +4,5 @@ dwl
 *-protocol.h
 .ccls-cache
 *.orig
+dwl-patches/
+dwlb/
