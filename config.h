@@ -23,7 +23,7 @@ static int log_level = WLR_ERROR;
 
 /* Autostart */
 static const char *const autostart[] = {
-		"bash", "/home/hugo/.scripts/dwlbar.sh",
+		"bash", "/home/hugo/.scripts/autostart.sh",
         NULL /* terminate */
 };
 
@@ -126,9 +126,9 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 /* commands */
 static const char *termcmd[] = { "foot", NULL };
 static const char *menucmd[] = { "dmenu_run", NULL };
-static const char *up_vol[]   = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+10%",   NULL };
-static const char *down_vol[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-10%",   NULL };
-static const char *mute_vol[] = { "pactl", "set-sink-mute",   "@DEFAULT_SINK@", "toggle", NULL };
+static const char *up_vol[]   = { "/home/hugo/.scripts/notify-volume.sh", "+5%", NULL };
+static const char *down_vol[] = { "/home/hugo/.scripts/notify-volume.sh", "-5%",   NULL };
+static const char *mute_vol[] = { "/home/hugo/.scripts/notify-volume.sh", "mute", NULL };
 
 static const Key keys[] = {
 	/* modifier                  key                  function          argument */
