@@ -103,7 +103,7 @@ LIBINPUT_CONFIG_ACCEL_PROFILE_FLAT
 LIBINPUT_CONFIG_ACCEL_PROFILE_ADAPTIVE
 */
 static const enum libinput_config_accel_profile accel_profile = LIBINPUT_CONFIG_ACCEL_PROFILE_ADAPTIVE;
-static const double accel_speed = 0.0;
+static const double accel_speed = 0.4;
 
 /* You can choose between:
 LIBINPUT_CONFIG_TAP_MAP_LRM -- 1/2/3 finger tap maps to left/right/middle
@@ -129,6 +129,7 @@ static const char *menucmd[] = { "dmenu_run", NULL };
 static const char *up_vol[]   = { "/home/hugo/.scripts/notify-volume.sh", "+5%", NULL };
 static const char *down_vol[] = { "/home/hugo/.scripts/notify-volume.sh", "-5%",   NULL };
 static const char *mute_vol[] = { "/home/hugo/.scripts/notify-volume.sh", "mute", NULL };
+static const char *powermenu[] = { "/home/hugo/.scripts/power_menu.sh", NULL };
 
 static const Key keys[] = {
 	/* modifier                  key                  function          argument */
@@ -137,13 +138,13 @@ static const Key keys[] = {
 	{ MODKEY,                    XKB_KEY_j,           focusstack,       {.i = +1} },
 	{ MODKEY,                    XKB_KEY_k,           focusstack,       {.i = -1} },
 	{ MODKEY,                    XKB_KEY_i,           incnmaster,       {.i = +1} },
-	{ MODKEY,                    XKB_KEY_d,           incnmaster,       {.i = -1} },
+	{ MODKEY,                    XKB_KEY_o,           incnmaster,       {.i = -1} },
 	{ MODKEY,                    XKB_KEY_h,           setmfact,         {.f = -0.05f} },
 	{ MODKEY,                    XKB_KEY_l,           setmfact,         {.f = +0.05f} },
 	{ MODKEY,                    XKB_KEY_Return,      zoom,             {0} },
 	{ MODKEY,                    XKB_KEY_Tab,         view,             {0} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_c,           killclient,       {0} },
-	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_q,           quit,             {0} },
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Escape,           quit,             {0} },
 	{ MODKEY,                    XKB_KEY_t,           setlayout,        {.v = &layouts[0]} },
 	{ MODKEY,                    XKB_KEY_f,           setlayout,        {.v = &layouts[1]} },
 	{ MODKEY,                    XKB_KEY_m,           setlayout,        {.v = &layouts[2]} },
@@ -169,7 +170,8 @@ static const Key keys[] = {
 	{ 0, XKB_KEY_XF86AudioRaiseVolume, spawn, {.v = up_vol } },
 	{ 0, XKB_KEY_XF86AudioLowerVolume, spawn, {.v = down_vol } },
 	{ 0, XKB_KEY_XF86AudioMute, spawn, {.v = mute_vol } },
-
+  /* Custom scripts */
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_x,           spawn,            {.v = powermenu} },
 	/* Ctrl-Alt-Backspace and Ctrl-Alt-Fx used to be handled by X server */
 	{ WLR_MODIFIER_CTRL|WLR_MODIFIER_ALT,XKB_KEY_Terminate_Server, quit, {0} },
 	/* Ctrl-Alt-Fx is used to switch to another VT, if you don't know what a VT is
